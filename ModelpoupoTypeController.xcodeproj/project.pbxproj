@@ -24,8 +24,8 @@
 		6690FDD519383A8F00898AA3 /* Main_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDD319383A8F00898AA3 /* Main_iphone.storyboard */; };
 		6690FDD619383A8F00898AA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDD419383A8F00898AA3 /* Main.storyboard */; };
 		6690FDEC19386F9700898AA3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6690FDE819386F9700898AA3 /* ViewController.m */; };
-		6690FDED19386F9700898AA3 /* ModelTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6690FDEA19386F9700898AA3 /* ModelTypeView.m */; };
-		6690FDEE19386F9700898AA3 /* ModelTypeView_iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDEB19386F9700898AA3 /* ModelTypeView_iphone.xib */; };
+		6690FDF71938843B00898AA3 /* ModelTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6690FDF61938843B00898AA3 /* ModelTypeView.m */; };
+		6690FDF91938850A00898AA3 /* ModelTypeView_iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDF81938850A00898AA3 /* ModelTypeView_iphone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,9 +60,9 @@
 		6690FDD419383A8F00898AA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6690FDE719386F9700898AA3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6690FDE819386F9700898AA3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		6690FDE919386F9700898AA3 /* ModelTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTypeView.h; sourceTree = "<group>"; };
-		6690FDEA19386F9700898AA3 /* ModelTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTypeView.m; sourceTree = "<group>"; };
-		6690FDEB19386F9700898AA3 /* ModelTypeView_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModelTypeView_iphone.xib; sourceTree = "<group>"; };
+		6690FDF51938843B00898AA3 /* ModelTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTypeView.h; sourceTree = "<group>"; };
+		6690FDF61938843B00898AA3 /* ModelTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTypeView.m; sourceTree = "<group>"; };
+		6690FDF81938850A00898AA3 /* ModelTypeView_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModelTypeView_iphone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,9 +124,9 @@
 			children = (
 				6690FDE719386F9700898AA3 /* ViewController.h */,
 				6690FDE819386F9700898AA3 /* ViewController.m */,
-				6690FDE919386F9700898AA3 /* ModelTypeView.h */,
-				6690FDEA19386F9700898AA3 /* ModelTypeView.m */,
-				6690FDEB19386F9700898AA3 /* ModelTypeView_iphone.xib */,
+				6690FDF51938843B00898AA3 /* ModelTypeView.h */,
+				6690FDF61938843B00898AA3 /* ModelTypeView.m */,
+				6690FDF81938850A00898AA3 /* ModelTypeView_iphone.xib */,
 				6690FDD319383A8F00898AA3 /* Main_iphone.storyboard */,
 				6690FDD419383A8F00898AA3 /* Main.storyboard */,
 				6690FDC3193838D300898AA3 /* AppDelegate.h */,
@@ -246,7 +246,7 @@
 				6690FDD619383A8F00898AA3 /* Main.storyboard in Resources */,
 				630DBE9418D197F9009DA0EB /* Images.xcassets in Resources */,
 				6690FDD519383A8F00898AA3 /* Main_iphone.storyboard in Resources */,
-				6690FDEE19386F9700898AA3 /* ModelTypeView_iphone.xib in Resources */,
+				6690FDF91938850A00898AA3 /* ModelTypeView_iphone.xib in Resources */,
 				630DBE8618D197F9009DA0EB /* InfoPlist.strings in Resources */,
 				6690FDCE193838D300898AA3 /* ModelpoupoTypeController-Info.plist in Resources */,
 				6690FDCF193838D300898AA3 /* ModelTypeViewController_iphone.xib in Resources */,
@@ -268,7 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6690FDED19386F9700898AA3 /* ModelTypeView.m in Sources */,
+				6690FDF71938843B00898AA3 /* ModelTypeView.m in Sources */,
 				6690FDEC19386F9700898AA3 /* ViewController.m in Sources */,
 				6690FDCD193838D300898AA3 /* AppDelegate.m in Sources */,
 				630DBE8818D197F9009DA0EB /* main.m in Sources */,
@@ -392,10 +392,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Xiao Xiang Shuyuan (7Y7NSKD85B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiao Xiang Shuyuan (7Y7NSKD85B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ModelpoupoTypeController/ModelpoupoTypeController-Prefix.pch";
 				INFOPLIST_FILE = "ModelpoupoTypeController/ModelpoupoTypeController-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "87F96AF4-3B2A-4F77-941D-6A4448F9F94C";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -406,10 +410,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Xiao Xiang Shuyuan (7Y7NSKD85B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiao Xiang Shuyuan (7Y7NSKD85B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ModelpoupoTypeController/ModelpoupoTypeController-Prefix.pch";
 				INFOPLIST_FILE = "ModelpoupoTypeController/ModelpoupoTypeController-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "87F96AF4-3B2A-4F77-941D-6A4448F9F94C";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
