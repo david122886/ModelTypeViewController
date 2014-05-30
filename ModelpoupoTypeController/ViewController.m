@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
-
+#import "ModelTypeViewController.h"
 @interface ViewController ()
+- (IBAction)clickedBt:(id)sender;
 
 @end
 
@@ -26,4 +27,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickedBt:(id)sender {
+    [ModelTypeViewController presentTypeViewWithTipString:@"请输入" withMaxTypeLength:@(5) withFinishedInput:^(NSString *inputString) {
+        
+    } withCancel:^{
+        
+    }];
+}
 @end
