@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ModelTypeViewController.h"
+#import "ModelTypeView.h"
 @interface ViewController ()
 - (IBAction)clickedBt:(id)sender;
 
@@ -28,7 +28,7 @@
 }
 
 - (IBAction)clickedBt:(id)sender {
-    [ModelTypeViewController presentTypeViewWithTipString:@"请输入" withMaxTypeLength:@(5) withFinishedInput:^(NSString *inputString) {
+    [ModelTypeView presentModelTypeViewParentViewController:self withTipString:@"输入" withMaxTypeLength:@(6) withFinishedInput:^(NSString *inputString) {
         
     } withCancel:^{
         

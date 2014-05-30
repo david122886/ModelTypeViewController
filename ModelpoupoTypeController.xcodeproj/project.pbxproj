@@ -21,11 +21,11 @@
 		6690FDCD193838D300898AA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6690FDC4193838D300898AA3 /* AppDelegate.m */; };
 		6690FDCE193838D300898AA3 /* ModelpoupoTypeController-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDC5193838D300898AA3 /* ModelpoupoTypeController-Info.plist */; };
 		6690FDCF193838D300898AA3 /* ModelTypeViewController_iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDC7193838D300898AA3 /* ModelTypeViewController_iphone.xib */; };
-		6690FDD0193838D300898AA3 /* ModelTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6690FDC9193838D300898AA3 /* ModelTypeViewController.m */; };
-		6690FDD1193838D300898AA3 /* ModelTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDCA193838D300898AA3 /* ModelTypeViewController.xib */; };
-		6690FDD2193838D300898AA3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6690FDCC193838D300898AA3 /* ViewController.m */; };
 		6690FDD519383A8F00898AA3 /* Main_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDD319383A8F00898AA3 /* Main_iphone.storyboard */; };
 		6690FDD619383A8F00898AA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDD419383A8F00898AA3 /* Main.storyboard */; };
+		6690FDEC19386F9700898AA3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6690FDE819386F9700898AA3 /* ViewController.m */; };
+		6690FDED19386F9700898AA3 /* ModelTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6690FDEA19386F9700898AA3 /* ModelTypeView.m */; };
+		6690FDEE19386F9700898AA3 /* ModelTypeView_iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690FDEB19386F9700898AA3 /* ModelTypeView_iphone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,13 +56,13 @@
 		6690FDC5193838D300898AA3 /* ModelpoupoTypeController-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ModelpoupoTypeController-Info.plist"; sourceTree = "<group>"; };
 		6690FDC6193838D300898AA3 /* ModelpoupoTypeController-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModelpoupoTypeController-Prefix.pch"; sourceTree = "<group>"; };
 		6690FDC7193838D300898AA3 /* ModelTypeViewController_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModelTypeViewController_iphone.xib; sourceTree = "<group>"; };
-		6690FDC8193838D300898AA3 /* ModelTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTypeViewController.h; sourceTree = "<group>"; };
-		6690FDC9193838D300898AA3 /* ModelTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTypeViewController.m; sourceTree = "<group>"; };
-		6690FDCA193838D300898AA3 /* ModelTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModelTypeViewController.xib; sourceTree = "<group>"; };
-		6690FDCB193838D300898AA3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6690FDCC193838D300898AA3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6690FDD319383A8F00898AA3 /* Main_iphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iphone.storyboard; sourceTree = "<group>"; };
 		6690FDD419383A8F00898AA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6690FDE719386F9700898AA3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6690FDE819386F9700898AA3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6690FDE919386F9700898AA3 /* ModelTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTypeView.h; sourceTree = "<group>"; };
+		6690FDEA19386F9700898AA3 /* ModelTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTypeView.m; sourceTree = "<group>"; };
+		6690FDEB19386F9700898AA3 /* ModelTypeView_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModelTypeView_iphone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +122,11 @@
 		630DBE8118D197F9009DA0EB /* ModelpoupoTypeController */ = {
 			isa = PBXGroup;
 			children = (
+				6690FDE719386F9700898AA3 /* ViewController.h */,
+				6690FDE819386F9700898AA3 /* ViewController.m */,
+				6690FDE919386F9700898AA3 /* ModelTypeView.h */,
+				6690FDEA19386F9700898AA3 /* ModelTypeView.m */,
+				6690FDEB19386F9700898AA3 /* ModelTypeView_iphone.xib */,
 				6690FDD319383A8F00898AA3 /* Main_iphone.storyboard */,
 				6690FDD419383A8F00898AA3 /* Main.storyboard */,
 				6690FDC3193838D300898AA3 /* AppDelegate.h */,
@@ -129,11 +134,6 @@
 				6690FDC5193838D300898AA3 /* ModelpoupoTypeController-Info.plist */,
 				6690FDC6193838D300898AA3 /* ModelpoupoTypeController-Prefix.pch */,
 				6690FDC7193838D300898AA3 /* ModelTypeViewController_iphone.xib */,
-				6690FDC8193838D300898AA3 /* ModelTypeViewController.h */,
-				6690FDC9193838D300898AA3 /* ModelTypeViewController.m */,
-				6690FDCA193838D300898AA3 /* ModelTypeViewController.xib */,
-				6690FDCB193838D300898AA3 /* ViewController.h */,
-				6690FDCC193838D300898AA3 /* ViewController.m */,
 				630DBE9318D197F9009DA0EB /* Images.xcassets */,
 				630DBE8218D197F9009DA0EB /* Supporting Files */,
 			);
@@ -244,9 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6690FDD619383A8F00898AA3 /* Main.storyboard in Resources */,
-				6690FDD1193838D300898AA3 /* ModelTypeViewController.xib in Resources */,
 				630DBE9418D197F9009DA0EB /* Images.xcassets in Resources */,
 				6690FDD519383A8F00898AA3 /* Main_iphone.storyboard in Resources */,
+				6690FDEE19386F9700898AA3 /* ModelTypeView_iphone.xib in Resources */,
 				630DBE8618D197F9009DA0EB /* InfoPlist.strings in Resources */,
 				6690FDCE193838D300898AA3 /* ModelpoupoTypeController-Info.plist in Resources */,
 				6690FDCF193838D300898AA3 /* ModelTypeViewController_iphone.xib in Resources */,
@@ -268,10 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6690FDED19386F9700898AA3 /* ModelTypeView.m in Sources */,
+				6690FDEC19386F9700898AA3 /* ViewController.m in Sources */,
 				6690FDCD193838D300898AA3 /* AppDelegate.m in Sources */,
 				630DBE8818D197F9009DA0EB /* main.m in Sources */,
-				6690FDD2193838D300898AA3 /* ViewController.m in Sources */,
-				6690FDD0193838D300898AA3 /* ModelTypeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
