@@ -19,5 +19,7 @@
  *
  * @return inputString 输入的字符
  */
-+(void)presentModelTypeViewParentViewController:(UIViewController *)parentController withTipString:(NSString*)tip withMaxTypeLength:(NSNumber*)maxLength withFinishedInput:(void (^)(NSString *inputString))finished withCancel:(void(^)())cancel;
++(void)presentModelTypeViewParentViewController:(UIViewController *)parentController withIsTextFieldType:(BOOL)isTextFieldType returnErrorTipString:(NSString* (^)(NSString *inputString))errorTip withTipString:(NSString*)tip withMaxTypeLength:(NSNumber*)maxLength withFinishedInput:(void (^)(NSString *inputString))finished withCancel:(void(^)())cancel;
+
++(void)presentModelTypeViewParentViewController:(UIViewController *)parentController returnErrorTipString:(NSString* (^)(NSString *inputString))errorTip withTipString:(NSString*)tip withMaxTypeLength:(NSNumber*)maxLength withFinishedInput:(void (^)(NSString *inputString))finished withCancel:(void(^)())cancel;
 @end

@@ -71,6 +71,14 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5000/5000字" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qbs-Xs-6EI">
+                            <rect key="frame" x="251" y="107" width="55" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -79,6 +87,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="backGroundButton" destination="hoY-Sm-WQD" id="QZu-98-JUi"/>
+                <outlet property="charNumberTipLabel" destination="qbs-Xs-6EI" id="oib-rC-OEC"/>
                 <outlet property="inputBackView" destination="bRs-3s-JzI" id="cRP-mf-gj6"/>
                 <outlet property="textView" destination="Ph1-iz-lBi" id="bsl-ED-mIE"/>
                 <outlet property="tipLabel" destination="r5Y-hT-Q2N" id="4Qp-rO-EEM"/>

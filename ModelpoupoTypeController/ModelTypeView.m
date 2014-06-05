@@ -9,11 +9,13 @@
 #import "ModelTypeView.h"
 #define IOS7 ([UIDevice currentDevice].systemVersion.floatValue >= 7.000)
 #define IOS568 ([[UIScreen mainScreen] bounds].size.height >= 568)
-#define INPUTVIEW_MAX_HEIGHT 300
+#define INPUTVIEW_MAX_HEIGHT 200
 #define kscreenHeight ([[UIScreen mainScreen] bounds].size.height)
 @interface ModelTypeView()
+@property (weak, nonatomic) IBOutlet UILabel *charNumberTipLabel;
 @property (nonatomic,strong) UIViewController *controller;
 @property (nonatomic,strong) UIWindow *presentWindow;
+@property (nonatomic,strong) NSString * (^errorTipBlock)(NSString *inputString);
 @property (nonatomic,strong) void(^finishedInput)(NSString *string);
 @property (nonatomic,assign) BOOL isFinished;
 @property (nonatomic,assign) int textViewContentHeight;
@@ -25,6 +27,10 @@
 
 @property (nonatomic,strong) NSString *tipString;
 @property (nonatomic,strong) NSNumber *maxLength;
+///是否是uitextfield风格,或者是uitextview风格,默认是uitextfield风格
+@property (nonatomic,assign) BOOL isTextFieldType;
+///已经输入的字符大小
+@property (nonatomic,assign) int inTypeLength;
 - (IBAction)OKButtonClicked:(id)sender;
 
 - (IBAction)backgroundClicked:(id)sender;
@@ -46,7 +52,8 @@
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"ModelTypeView_iphone" owner:self options:nil];
     return array[0];
 }
-+(void)presentModelTypeViewParentViewController:(UIViewController *)parentController withTipString:(NSString*)tip withMaxTypeLength:(NSNumber*)maxLength withFinishedInput:(void (^)(NSString *inputString))finished withCancel:(void(^)())cancel{
+
++(void)presentModelTypeViewParentViewController:(UIViewController *)parentController withIsTextFieldType:(BOOL)isTextFieldType returnErrorTipString:(NSString* (^)(NSString *inputString))errorTip withTipString:(NSString*)tip withMaxTypeLength:(NSNumber*)maxLength withFinishedInput:(void (^)(NSString *inputString))finished withCancel:(void(^)())cancel{
     ModelTypeView *controller = [ModelTypeView defaultModelTypeView];
     
     [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(keyBoardUP:) name:UIKeyboardWillShowNotification object:nil];
@@ -60,6 +67,7 @@
     controller.controller = parentController;
     controller.cancel = cancel;
     controller.finishedInput = finished;
+    controller.errorTipBlock = errorTip;
     [controller.presentWindow setHidden:NO];
     controller.textView.text = @"";
     if (tip) {
@@ -73,11 +81,52 @@
     
     [controller.textView becomeFirstResponder];
     controller.maxLength = maxLength;
+    controller.isTextFieldType = isTextFieldType;
+    controller.charNumberTipLabel.text = [NSString stringWithFormat:@"0/%d字",maxLength.intValue];
+    controller.inTypeLength = 0;
 }
+
++(void)presentModelTypeViewParentViewController:(UIViewController *)parentController returnErrorTipString:(NSString* (^)(NSString *inputString))errorTip withTipString:(NSString*)tip withMaxTypeLength:(NSNumber*)maxLength withFinishedInput:(void (^)(NSString *inputString))finished withCancel:(void(^)())cancel{
+    ModelTypeView *controller = [ModelTypeView defaultModelTypeView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(keyBoardUP:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(keyBoardDOWN:) name:UIKeyboardWillHideNotification object:nil];
+    controller.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    controller.textView.layer.borderWidth = 1;
+    controller.textView.layer.cornerRadius = 5;
+    controller.textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    controller.inputBackView.backgroundColor = [UIColor whiteColor];
+    controller.tipString = tip;
+    controller.controller = parentController;
+    controller.cancel = cancel;
+    controller.finishedInput = finished;
+    controller.errorTipBlock = errorTip;
+    [controller.presentWindow setHidden:NO];
+    controller.textView.text = @"";
+    if (tip) {
+        controller.tipLabel.text = tip;
+    }else{
+        controller.tipLabel.text = @"请输入:";
+    }
+    
+    controller.frame = [[UIScreen mainScreen] bounds];
+    [controller.controller.view addSubview:controller];
+    
+    [controller.textView becomeFirstResponder];
+    controller.maxLength = maxLength;
+    controller.isTextFieldType = YES;
+    controller.charNumberTipLabel.text = [NSString stringWithFormat:@"0/%d字",maxLength.intValue];
+    controller.inTypeLength = 0;
+}
+
 #pragma mark uitextviewDelegate
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@" "]|| [text isEqualToString:@"\n"]) {
+        return self.isTextFieldType?NO:YES;
+    }
+    
+    if (self.inTypeLength >= self.maxLength.intValue && ![text isEqualToString:@""]) {
         return NO;
     }
     if (CGRectGetHeight(self.inputBackView.frame) < INPUTVIEW_MAX_HEIGHT) {
@@ -88,6 +137,13 @@
         self.inputBackView.frame = (CGRect){rect.origin.x,rect.origin.y-height,rect.size.width,rect.size.height+height};
     }
     return YES;
+}
+
+-(void)textViewDidChange:(UITextView *)textView{
+    if (textView.markedTextRange == nil) {
+        self.inTypeLength = textView.text.length;
+        self.charNumberTipLabel.text = [NSString stringWithFormat:@"%d/%d字",self.inTypeLength,self.maxLength.intValue];
+    }
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView{
@@ -137,6 +193,7 @@
     self.isFinished = YES;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.tipLabel.text = self.tipString;
+        self.textView.text = @"";
     });
     if ([self.textView.text isEqualToString:@""]) {
         self.tipLabel.text = @"输入名称不能为空";
@@ -147,6 +204,13 @@
         return;
     }
     
+    if (self.errorTipBlock) {
+        NSString *errorTipString = self.errorTipBlock(self.textView.text);
+        if (errorTipString) {
+            self.tipLabel.text = errorTipString;
+            return;
+        }
+    }
     [self.textView resignFirstResponder];
 }
 

@@ -28,7 +28,17 @@
 }
 
 - (IBAction)clickedBt:(id)sender {
-    [ModelTypeView presentModelTypeViewParentViewController:self withTipString:@"输入" withMaxTypeLength:@(6) withFinishedInput:^(NSString *inputString) {
+//    [ModelTypeView presentModelTypeViewParentViewController:self withIsTextFieldType:YES returnErrorTipString:^NSString *(NSString *inputString) {
+//        return nil;
+//    } withTipString:@"输入" withMaxTypeLength:@(60) withFinishedInput:^(NSString *inputString) {
+//        
+//    } withCancel:^{
+//        
+//    }];
+    
+    [ModelTypeView presentModelTypeViewParentViewController:self returnErrorTipString:^NSString *(NSString *inputString) {
+        return nil;
+    } withTipString:@"输入" withMaxTypeLength:@(6) withFinishedInput:^(NSString *inputString) {
         
     } withCancel:^{
         
