@@ -195,6 +195,7 @@
         self.tipLabel.text = self.tipString;
         self.textView.text = @"";
         self.inTypeLength = 0;
+        self.charNumberTipLabel.text = [NSString stringWithFormat:@"0/%d字",self.maxLength.intValue];
     });
     if ([self.textView.text isEqualToString:@""]) {
         self.tipLabel.text = @"输入名称不能为空";
