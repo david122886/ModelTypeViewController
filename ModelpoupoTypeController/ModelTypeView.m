@@ -11,9 +11,9 @@
 #define IOS568 ([[UIScreen mainScreen] bounds].size.height >= 568)
 #define INPUTVIEW_MAX_HEIGHT 200
 #define kscreenHeight ([[UIScreen mainScreen] bounds].size.height)
+#define kscreenWidth ([[UIScreen mainScreen] bounds].size.width)
 @interface ModelTypeView()
 @property (weak, nonatomic) IBOutlet UILabel *charNumberTipLabel;
-@property (nonatomic,strong) UIViewController *controller;
 @property (nonatomic,strong) UIWindow *presentWindow;
 @property (nonatomic,strong) NSString * (^errorTipBlock)(NSString *inputString);
 @property (nonatomic,strong) void(^finishedInput)(NSString *string);
@@ -64,7 +64,6 @@
     controller.textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     controller.inputBackView.backgroundColor = [UIColor whiteColor];
     controller.tipString = tip;
-    controller.controller = parentController;
     controller.cancel = cancel;
     controller.finishedInput = finished;
     controller.errorTipBlock = errorTip;
@@ -76,8 +75,8 @@
         controller.tipLabel.text = @"请输入:";
     }
     
-    controller.frame = [[UIScreen mainScreen] bounds];
-    [controller.controller.view addSubview:controller];
+    controller.frame = parentController.view.bounds;
+    [parentController.view addSubview:controller];
     
     [controller.textView becomeFirstResponder];
     controller.maxLength = maxLength;
@@ -97,7 +96,6 @@
     controller.textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     controller.inputBackView.backgroundColor = [UIColor whiteColor];
     controller.tipString = tip;
-    controller.controller = parentController;
     controller.cancel = cancel;
     controller.finishedInput = finished;
     controller.errorTipBlock = errorTip;
@@ -109,8 +107,8 @@
         controller.tipLabel.text = @"请输入:";
     }
     
-    controller.frame = [[UIScreen mainScreen] bounds];
-    [controller.controller.view addSubview:controller];
+    controller.frame = parentController.view.bounds;
+    [parentController.view addSubview:controller];
     
     [controller.textView becomeFirstResponder];
     controller.maxLength = maxLength;
@@ -129,12 +127,23 @@
     if (self.inTypeLength >= self.maxLength.intValue && ![text isEqualToString:@""]) {
         return NO;
     }
-    if (CGRectGetHeight(self.inputBackView.frame) < INPUTVIEW_MAX_HEIGHT) {
-        float height = textView.contentSize.height - self.textViewContentHeight;
-        height = height > 0 ?height:0;
-        self.textViewContentHeight = textView.contentSize.height;
-        CGRect rect =self.inputBackView.frame;
-        self.inputBackView.frame = (CGRect){rect.origin.x,rect.origin.y-height,rect.size.width,rect.size.height+height};
+    
+    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        if (CGRectGetHeight(self.inputBackView.frame) < INPUTVIEW_MAX_HEIGHT) {
+            float height = textView.contentSize.height - self.textViewContentHeight;
+            height = height > 0 ?height:0;
+            self.textViewContentHeight = textView.contentSize.height;
+            CGRect rect =self.inputBackView.frame;
+            self.inputBackView.frame = (CGRect){rect.origin.x,rect.origin.y-height,rect.size.width,rect.size.height+height};
+        }
+    }else{
+        if (CGRectGetHeight(self.inputBackView.frame) < INPUTVIEW_MAX_HEIGHT && CGRectGetMinY(self.inputBackView.frame) >=20) {
+            float height = textView.contentSize.height - self.textViewContentHeight;
+            height = height > 0 ?height:0;
+            self.textViewContentHeight = textView.contentSize.height;
+            CGRect rect =self.inputBackView.frame;
+            self.inputBackView.frame = (CGRect){rect.origin.x,rect.origin.y-height,rect.size.width,rect.size.height+height};
+        }
     }
     return YES;
 }
@@ -156,14 +165,24 @@
 -(void)keyBoardUP:(NSNotification*)notification{
     NSTimeInterval animationDuration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect rect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    float height = IOS7?rect.size.height:rect.size.height+20;
-    self.inputBackView.frame = (CGRect){0,kscreenHeight,CGRectGetWidth(self.frame),130};
-    [UIView animateWithDuration:animationDuration animations:^{
-        self.inputBackView.frame = (CGRect){0,kscreenHeight-height-CGRectGetHeight(self.inputBackView.frame),CGRectGetWidth(self.frame),self.inputBackView.frame.size.height};
-    } completion:^(BOOL finished) {
-        
-    }];
     
+    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        float height = IOS7?rect.size.height:rect.size.height+20;
+        self.inputBackView.frame = (CGRect){0,kscreenHeight,CGRectGetWidth(self.frame),130};
+        [UIView animateWithDuration:animationDuration animations:^{
+            self.inputBackView.frame = (CGRect){0,kscreenHeight-height-CGRectGetHeight(self.inputBackView.frame),CGRectGetWidth(self.frame),self.inputBackView.frame.size.height};
+        } completion:^(BOOL finished) {
+            
+        }];
+    }else{
+        float height = IOS7?rect.size.width:rect.size.width+20;
+        self.inputBackView.frame = (CGRect){0,kscreenWidth,CGRectGetWidth(self.frame),130};
+        [UIView animateWithDuration:animationDuration animations:^{
+            self.inputBackView.frame = (CGRect){0,kscreenWidth-height-CGRectGetHeight(self.inputBackView.frame),CGRectGetWidth(self.frame),self.inputBackView.frame.size.height};
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
 }
 
 -(void)keyBoardDOWN:(NSNotification*)notification{
@@ -172,11 +191,14 @@
     [self.presentWindow setHidden:YES];
     self.presentWindow = nil;
     [UIView animateWithDuration:animationDuration animations:^{
-        self.inputBackView.frame = (CGRect){0,kscreenHeight,CGRectGetWidth(self.frame),130};
+        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            self.inputBackView.frame = (CGRect){0,kscreenHeight,CGRectGetWidth(self.frame),130};
+        }else{
+            self.inputBackView.frame = (CGRect){0,kscreenWidth,CGRectGetWidth(self.frame),130};
+        }
     } completion:^(BOOL finished) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self removeFromSuperview];
-        self.controller = nil;
         if (self.isFinished) {
             if (self.finishedInput) {
                 self.finishedInput(self.textView.text);
